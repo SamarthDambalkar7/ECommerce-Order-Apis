@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  ecommerce-spring-app:
+    image: samarthdambalkar7/e-commerce
+    container_name: ecommerce-spring-app
+    networks:
+      - mynetwork
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: "dev"  # dev profile of spring boot app
+    depends_on:
+      - mysql-container
+    restart: always
+
+
+  mysql-container:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ecommerce
+    networks:
+      - mynetwork
+    ports:
+      - "3306:3306"
+  #    restart: always
+
+networks:
+  mynetwork:
+    driver: bridge
