@@ -17,13 +17,14 @@ Getting Started:
 
 1) Cloning the Repository:
 
-git clone https://github.com/SamarthDambalkar7/E-commerce-order.git
-cd e-commerce-app
-Running with Docker
+git clone https://github.com/SamarthDambalkar7/ECommerce-Order-Apis.git
+cd ECommerce-Order-Apis
+a) Running with Docker
+
 Make sure you have Docker installed.
+You need to pull mysql:latest image on your local docker
 Navigate to the project root directory.
 bash
-Copy code
 docker-compose up
 The application will be accessible at http://localhost:8080.
 
@@ -47,21 +48,14 @@ GET /api/order-items/{id}: Get an order item by ID.
 POST /api/order-items: Create a new order item.
 PUT /api/order-items/{id}: Update an existing order item.
 DELETE /api/order-items/{id}: Delete an order item by ID.
+
 OpenAPI (Swagger)
 The API documentation is available using Swagger at http://localhost:8080/swagger-ui.html.
 
 Docker
 Docker images for the application are available on Docker Hub.
 
-Application Image: your-username/e-commerce-app:latest
+Application Image: samarthdambalkar7/e-commerce-app:latest
 Database Image: mysql:latest
 To run the application with Docker:
 
-bash
-Copy code
-docker-compose up
-Contributing
-Feel free to contribute to the development of this application by creating issues or submitting pull requests.
-
-License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
