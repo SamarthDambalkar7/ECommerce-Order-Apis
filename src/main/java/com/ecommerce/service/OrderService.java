@@ -10,7 +10,7 @@ import java.util.List;
 public interface OrderService {
 
     //GET Requests
-    Response<Order> getOrderByID(long orderId);
+    Response<OrderDetails> getOrderByID(long orderId);
 
     Response<List<OrderDetails>> getAllOrders();
 
@@ -20,10 +20,13 @@ public interface OrderService {
     Response<List<OrderItem>> getDetailedOrdersList(long orderId);
 
     //PUT Requests
-    boolean updateOrderByID(long orderId, Order order);
+    Response<Void> updateOrderByID(long orderId, Order order);
 
     //DELETE Requests
-    boolean deleteOrderByID(long orderId);
+    Response<Void> deleteOrderByID(long orderId);
+
+    //Utility Methods
+    List<OrderItem> getOrderItemsFromDB(long orderId);
 
 
 }

@@ -36,7 +36,7 @@ public class OrderController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getOrderByOrderId(@PathVariable(name = "id", required = false) Long orderId) {
 
-        Response<Order> orderResponse = orderService.getOrderByID(orderId);
+        Response<OrderDetails> orderResponse = orderService.getOrderByID(orderId);
         HttpStatus httpStatus = HttpStatus.valueOf(orderResponse.getStatus().getCode());
 
         return new ResponseEntity<>(orderResponse, httpStatus);
@@ -60,15 +60,19 @@ public class OrderController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateExistingOrder(@PathVariable(name = "id") Integer orderId, @RequestBody Order order) {
-        return orderService.updateOrderByID(orderId, order) ? ResponseEntity.ok().body("Order: " + orderId + " Updated!")
-                : ResponseEntity.notFound().build();
+    public ResponseEntity<?> updateExistingOrder(@PathVariable(name = "id") Long orderId, @RequestBody Order order) {
+       Response<Void> response = orderService.updateOrderByID(orderId,order);
+        HttpStatus httpStatus = HttpStatus.valueOf(response.getStatus().getCode());
+
+        return new ResponseEntity<>(response, httpStatus);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteOrder(@PathVariable(name = "id") Integer orderId) {
-        return orderService.deleteOrderByID(orderId) ? ResponseEntity.status(HttpStatus.NO_CONTENT).body("Order : " + orderId + " Deleted!")
-                : ResponseEntity.notFound().build();
+    public ResponseEntity<?> deleteOrder(@PathVariable(name = "id") Long orderId) {
+         Response<Void> response = orderService.deleteOrderByID(orderId);
+        HttpStatus httpStatus = HttpStatus.valueOf(response.getStatus().getCode());
+
+        return new ResponseEntity<>(response, httpStatus);
     }
 
 }
